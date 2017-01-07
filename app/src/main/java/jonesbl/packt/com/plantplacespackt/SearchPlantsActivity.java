@@ -4,7 +4,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AutoCompleteTextView;
+import android.widget.Toast;
 
+import java.util.List;
+
+import jonesbl.packt.com.dto.PlantDTO;
 import jonesbl.packt.com.service.IPlantService;
 import jonesbl.packt.com.service.PlantService;
 
@@ -22,6 +26,10 @@ public class SearchPlantsActivity extends AppCompatActivity {
     }
 
     public void searchPlants(View v) {
-        plantService.fetchPlants(actPlantName.getText().toString());
+        List<PlantDTO> plants = plantService.fetchPlants(actPlantName.getText().toString());
+
+        for (PlantDTO plant : plants) {
+            Toast.makeText(this, plant.toString(), Toast.LENGTH_LONG).show();
+        }
     }
 }

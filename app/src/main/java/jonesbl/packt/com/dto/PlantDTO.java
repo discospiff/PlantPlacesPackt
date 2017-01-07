@@ -11,6 +11,8 @@ public class PlantDTO {
     private String species;
     private String cultivar;
     private String common;
+    private String type;
+
 
     public int getGuid() {
         return guid;
@@ -52,4 +54,17 @@ public class PlantDTO {
     public String toString() {
         return genus + " " + species + " " + cultivar + " " + common;
     }
+
+    public void setCommon(String common) {
+        this.common = common;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
 }
