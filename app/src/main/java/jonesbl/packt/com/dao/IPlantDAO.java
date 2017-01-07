@@ -1,4 +1,4 @@
-package jonesbl.packt.com.plantplacespackt.dao;
+package jonesbl.packt.com.dao;
 
 import java.util.List;
 
