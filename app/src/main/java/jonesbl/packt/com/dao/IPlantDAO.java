@@ -2,7 +2,7 @@ package jonesbl.packt.com.dao;
 
 import java.util.List;
 
-import jonesbl.packt.com.plantplacespackt.dto.PlantDTO;
+import jonesbl.packt.com.dto.PlantDTO;
 
 /**
  * A collection of methods to access plant data.
