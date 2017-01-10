@@ -1,11 +1,13 @@
 package jonesbl.packt.com.plantplacespackt;
 
+import org.json.JSONException;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
+import java.io.IOException;
 import java.util.List;
 
 import jonesbl.packt.com.dao.IPlantDAO;
@@ -35,7 +37,7 @@ public class TestPlantDAO {
     }
 
     @Test
-    public void testPlantDAO_searchForRedbudShouldReturnAtLeastOneResult() {
+    public void testPlantDAO_searchForRedbudShouldReturnAtLeastOneResult() throws IOException, JSONException {
 
         // assume we do not have a match.
         boolean redbudFound = false;
@@ -53,7 +55,7 @@ public class TestPlantDAO {
     }
 
     @Test
-    public void testPlantDAO_searchForOakShouldReturnAtLeastOneWhiteOak() {
+    public void testPlantDAO_searchForOakShouldReturnAtLeastOneWhiteOak() throws IOException, JSONException {
 
         // assume we do not have a match.
         boolean whiteOakFound = false;
@@ -70,7 +72,7 @@ public class TestPlantDAO {
         System.out.println("TEST: Running white oak test.");
     }
 
-    public void testPlantDAO_searchForEShouldReturnAtLeastTwoResults() {
+    public void testPlantDAO_searchForEShouldReturnAtLeastTwoResults() throws IOException, JSONException {
         List<PlantDTO> plants = plantDAO.fetchPlants("e");
         int size = plants.size();
         boolean atLeastTwo = size > 2;

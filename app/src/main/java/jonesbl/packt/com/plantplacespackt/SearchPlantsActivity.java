@@ -6,6 +6,9 @@ import android.view.View;
 import android.widget.AutoCompleteTextView;
 import android.widget.Toast;
 
+import org.json.JSONException;
+
+import java.io.IOException;
 import java.util.List;
 
 import jonesbl.packt.com.dto.PlantDTO;
@@ -25,7 +28,7 @@ public class SearchPlantsActivity extends AppCompatActivity {
         actPlantName = (AutoCompleteTextView) findViewById(R.id.actPlantName);
     }
 
-    public void searchPlants(View v) {
+    public void searchPlants(View v) throws IOException, JSONException {
         List<PlantDTO> plants = plantService.fetchPlants(actPlantName.getText().toString());
 
         for (PlantDTO plant : plants) {

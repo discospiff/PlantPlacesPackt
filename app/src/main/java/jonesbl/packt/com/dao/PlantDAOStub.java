@@ -1,5 +1,8 @@
 package jonesbl.packt.com.dao;
 
+import org.json.JSONException;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,7 +16,7 @@ import jonesbl.packt.com.dto.TreeDTO;
 
 public class PlantDAOStub implements IPlantDAO {
     @Override
-    public List<PlantDTO> fetchPlants(String filter) {
+    public List<PlantDTO> fetchPlants(String filter) throws IOException, JSONException {
         List<PlantDTO> allPlants = new ArrayList<PlantDTO>();
         TreeDTO plant = new TreeDTO();
         plant.setGenus("Cercis");

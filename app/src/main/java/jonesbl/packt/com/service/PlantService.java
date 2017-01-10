@@ -1,5 +1,8 @@
 package jonesbl.packt.com.service;
 
+import org.json.JSONException;
+
+import java.io.IOException;
 import java.util.List;
 
 import jonesbl.packt.com.dao.IPlantDAO;
@@ -20,7 +23,7 @@ public class PlantService implements  IPlantService {
     }
 
     @Override
-    public List<PlantDTO> fetchPlants(String filter) {
+    public List<PlantDTO> fetchPlants(String filter) throws IOException, JSONException {
         return plantDAO.fetchPlants(filter);
     }
 }
