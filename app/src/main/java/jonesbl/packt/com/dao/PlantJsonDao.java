@@ -16,4 +16,14 @@ public class PlantJsonDao implements IPlantDAO {
     public List<PlantDTO> fetchPlants(String filter) throws IOException, JSONException {
         return null;
     }
+
+    @Override
+    public NetworkDAO getNetworkDAO() {
+        return null;
+    }
+
+    @Override
+    public void setNetworkDAO(NetworkDAO networkDAO) {
+
+    }
 }

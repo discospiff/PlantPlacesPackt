@@ -19,7 +19,7 @@ public class PlantDAO implements IPlantDAO {
     private NetworkDAO networkDAO;
 
     public PlantDAO() {
-        networkDAO = new NetworkDAO();
+        setNetworkDAO(new NetworkDAO());
     }
 
     @Override
@@ -27,7 +27,7 @@ public class PlantDAO implements IPlantDAO {
         ArrayList<PlantDTO> allPlants = new ArrayList<PlantDTO>();
 
 
-        String request = networkDAO.fetch("http://plantplaces.com/perl/mobile/viewplantsjson.pl?Combined_Name=" + filter);
+        String request = getNetworkDAO().fetch("http://plantplaces.com/perl/mobile/viewplantsjson.pl?Combined_Name=" + filter);
 
         // the entire JSON string is in root.
         JSONObject root = new JSONObject(request);
@@ -58,5 +58,15 @@ public class PlantDAO implements IPlantDAO {
         System.out.println("Foobat");
         return allPlants;
 
+    }
+
+    @Override
+    public NetworkDAO getNetworkDAO() {
+        return networkDAO;
+    }
+
+    @Override
+    public void setNetworkDAO(NetworkDAO networkDAO) {
+        this.networkDAO = networkDAO;
     }
 }

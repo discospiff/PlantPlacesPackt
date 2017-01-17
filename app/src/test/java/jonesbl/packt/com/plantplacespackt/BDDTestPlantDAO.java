@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.util.List;
 
 import jonesbl.packt.com.dao.IPlantDAO;
+import jonesbl.packt.com.dao.NetworkDAO;
 import jonesbl.packt.com.dao.PlantDAO;
 import jonesbl.packt.com.dto.PlantDTO;
 
@@ -16,6 +17,7 @@ import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.beans.HasPropertyWithValue.hasProperty;
 import static org.hamcrest.collection.IsEmptyCollection.empty;
 import static org.junit.Assert.assertThat;
+import static org.mockito.Mockito.*;
 
 /**
  * Created by jonesb on 1/9/2017.
@@ -61,8 +63,16 @@ public class BDDTestPlantDAO {
         thenVerifyNoResults();
     }
 
-    private void givenPlantDAOIsInitialized() {
+    private void givenPlantDAOIsInitialized() throws IOException {
         plantDAO = new PlantDAO();
+
+        // Here's where we mock our NetworkDAO.
+        NetworkDAO networkDAO = mock(NetworkDAO.class);
+        when(networkDAO.fetch("http://plantplaces.com/perl/mobile/viewplantsjson.pl?Combined_Name=sklujapouetllkjsda;u")).thenReturn(gibberishJSON);
+        when(networkDAO.fetch("http://plantplaces.com/perl/mobile/viewplantsjson.pl?Combined_Name=Quercus")).thenReturn(quercusJSON);
+        when(networkDAO.fetch("http://plantplaces.com/perl/mobile/viewplantsjson.pl?Combined_Name=Redbud")).thenReturn(redbudJSON);
+
+        plantDAO.setNetworkDAO(networkDAO);
     }
 
     private void whenSearchForRedbud() throws IOException, JSONException {
@@ -118,5 +128,20 @@ public class BDDTestPlantDAO {
         // did we find a redbud?
         assertTrue(quercusAlbaFound);
     }
+
+    String redbudJSON = "{\"plants\":[" +
+            "{\"id\":\"83\",\"genus\":\"Cercis\",\"species\":\"canadensis\",\"cultivar\":\"\",\"common\":\"Eastern Redbud\"}," +
+            "]}";
+
+    String quercusJSON =
+            "{\"plants\":[" +
+                    "{\"id\":\"286\",\"genus\":\"Quercus\",\"species\":\"alba\",\"cultivar\":\"\",\"common\":\"White Oak\"},"+
+                    "{\"id\":\"286\",\"genus\":\"Quercus\",\"species\":\"robur\",\"cultivar\":\"\",\"common\":\"English Oak\"}"+
+                    "]}";
+
+    String gibberishJSON =
+            "{\"plants\":["+
+                    "]"+
+                    "}-1";
 
 }

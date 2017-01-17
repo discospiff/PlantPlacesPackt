@@ -20,4 +20,7 @@ public interface IPlantDAO {
      */
     public List<PlantDTO> fetchPlants(String filter) throws IOException, JSONException;
 
+    NetworkDAO getNetworkDAO();
+
+    void setNetworkDAO(NetworkDAO networkDAO);
 }

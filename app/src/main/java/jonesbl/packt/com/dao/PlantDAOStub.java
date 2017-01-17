@@ -36,4 +36,14 @@ public class PlantDAOStub implements IPlantDAO {
 
         return allPlants;
     }
+
+    @Override
+    public NetworkDAO getNetworkDAO() {
+        return null;
+    }
+
+    @Override
+    public void setNetworkDAO(NetworkDAO networkDAO) {
+
+    }
 }
