@@ -1,4 +1,4 @@
-package jonesbl.packt.com.plantplacespackt;
+package jonesbl.packt.com.dao;
 
 import org.json.JSONException;
 import org.junit.Test;
