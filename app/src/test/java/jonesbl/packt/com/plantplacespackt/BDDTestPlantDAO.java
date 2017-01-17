@@ -28,6 +28,35 @@ public class BDDTestPlantDAO {
         whenSearchForRedbud();
         thenVerifyAtLeastOneCercisCanadensis();
     }
+
+    @Test
+    public void testPlantDAO_fetchShouldReturnAtLeastTwoOaksForQuercus() throws IOException, JSONException {
+        givenPlantDAOIsInitialized();
+        whenSearchForQuercus();
+        thenVerifyTwoOaks();
+    }
+
+    @Test
+    public void testPlantDAO_fetchShouldReturnGenusQuercusForQuercus() throws IOException, JSONException {
+        givenPlantDAOIsInitialized();
+        whenSearchForQuercus();
+        thenVerifyAllGenusAreQuercus();
+    }
+
+    private void thenVerifyAllGenusAreQuercus() {
+        for (PlantDTO plant : plants)
+        {
+            assertEquals("Quercus", plant.getGenus());
+        }
+    }
+
+    @Test
+    public void testPlantDAO_fetchShouldReturnNothingForGibberish() throws IOException, JSONException {
+        givenPlantDAOIsInitialized();
+        whenSearchForGibberish();
+        thenVerifyNoResults();
+    }
+
     private void givenPlantDAOIsInitialized() {
         plantDAO = new PlantDAO();
     }
@@ -49,22 +78,6 @@ public class BDDTestPlantDAO {
         assertTrue(redbudFound);
 
     }
-
-    @Test
-    public void testPlantDAO_fetchShouldReturnAtLeastTwoOaksForQuercus() throws IOException, JSONException {
-        givenPlantDAOIsInitialized();
-        whenSearchForQuercus();
-        thenVerifyTwoOaks();
-    }
-    
-    @Test
-    public void testPlantDAO_fetchShouldReturnNothingForGibberish() throws IOException, JSONException {
-        givenPlantDAOIsInitialized();
-        whenSearchForGibberish();
-        thenVerifyNoResults();
-    }
-
-
 
     private void thenVerifyNoResults() {
         int size = plants.size();
