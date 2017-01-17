@@ -12,6 +12,10 @@ import jonesbl.packt.com.dto.PlantDTO;
 
 import static junit.framework.Assert.assertTrue;
 import static junit.framework.TestCase.assertEquals;
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.beans.HasPropertyWithValue.hasProperty;
+import static org.hamcrest.collection.IsEmptyCollection.empty;
+import static org.junit.Assert.assertThat;
 
 /**
  * Created by jonesb on 1/9/2017.
@@ -46,7 +50,7 @@ public class BDDTestPlantDAO {
     private void thenVerifyAllGenusAreQuercus() {
         for (PlantDTO plant : plants)
         {
-            assertEquals("Quercus", plant.getGenus());
+            assertThat(plant, hasProperty("genus", containsString("Quercus")));
         }
     }
 
@@ -80,8 +84,7 @@ public class BDDTestPlantDAO {
     }
 
     private void thenVerifyNoResults() {
-        int size = plants.size();
-        assertEquals(0, size);
+        assertThat(plants, empty());
     }
 
     private void whenSearchForGibberish() throws IOException, JSONException {

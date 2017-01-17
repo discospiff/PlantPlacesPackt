@@ -27,4 +27,5 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.4.0'
     testCompile 'junit:junit:4.12'
     testCompile 'org.json:json:20140107'
+    testCompile 'org.hamcrest:hamcrest-library:1.3'
 }
